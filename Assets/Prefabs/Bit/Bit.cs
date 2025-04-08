@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bit : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
     public bool state = false;
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
