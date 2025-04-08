@@ -3,7 +3,8 @@ using UnityEngine;
 public class Bit : MonoBehaviour
 {
     public bool state = false;
-    SpriteRenderer spriteRenderer;
+
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -12,7 +13,19 @@ public class Bit : MonoBehaviour
 
     void Update()
     {
-        spriteRenderer.color = state ? Color.green : Color.red;
+        if (state)
+        {
+            spriteRenderer.color = Color.green;
+        }
+        else
+        {
+            spriteRenderer.color = Color.red;
+        }
+    }
+
+    public void SetState(bool newState)
+    {
+        state = newState;
     }
 
     private void OnMouseUp()

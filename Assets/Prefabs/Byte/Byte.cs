@@ -3,27 +3,8 @@ using UnityEngine;
 public class Byte : MonoBehaviour
 {
     [SerializeField] Bit[] bits = new Bit[8];
+
     [SerializeField] private int value = 0;
-
-    void Update()
-    {
-        Bin2Dec();
-    }
-
-    private void Bin2Dec()
-    {
-        value = 0;
-
-        for (int i = 0; i < bits.Length; i++)
-        {
-            if (bits[i].state)
-            {
-                value += (int)Mathf.Pow(2, i);
-            }
-        }
-
-        Debug.Log("Decimal value: " + value);
-    }
 
     public void SetValue(int newValue)
     {
@@ -34,19 +15,16 @@ public class Byte : MonoBehaviour
 
         value = newValue;
 
-        int remainingValue = newValue;
-
-        for (int i = 7; i >= 0; i--)
+        for (int i = 0; i < 8; i++)
         {
-            int power = (int)Mathf.Pow(2, i);
-            if (remainingValue >= power)
+            if (newValue >= Mathf.Pow(2, (7 - i)))
             {
-                bits[7 - i].state = true;
-                remainingValue -= power;
+                bits[i].SetState(true);
+                newValue -= (int)Mathf.Pow(2, (7 - i));
             }
             else
             {
-                bits[7 - i].state = false;
+                bits[i].SetState(false);
             }
         }
     }
